@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>  </title>
+</head>
+<body>
+<h2>3행 2열 테이블 생성</h2>
+<table border="1"  cellspacing="0" cellpadding="10" width="200" height="100">
+<!-- 
+	셀과 셀사이의 여백 설정 cellspacing
+	셀 내부의 상하좌우 여백 cellpadding
+	테두리 border
+	테두리 사이즈 width/height
+
+ -->
+ <thead>
+ 	<tr>
+ 		<th>이름</th>
+ 		<th>나이</th>
+ 	</tr>
+ </thead>
+ <tbody>
+	<tr>
+		<td>Minjoo Jo</td>
+		<td>20</td>
+	</tr> 
+	<tr>
+		<td>Jion Yun</td>
+		<td>40</td>
+	</tr> 
+ </tbody>
+</table>
+<h3>열병합</h3>
+<table border="1">
+	<tr>
+		<th colspan="2">A</th>
+	</tr>
+	<tr>
+		<td>B</td>
+		<td>C</td>
+	</tr>
+
+</table>
+
+
+
+<hr>
+<h3>행병합</h3>
+<table border="1">
+	<tr>
+		<td>A</td>
+		<td rowspan="2">C</td>
+	</tr>
+	<tr>
+		<td>B</td>
+	</tr>
+</table>
+<hr>
+<h3>행/열 병합(9행3열)</h3>
+<table border="1">
+	<tr>
+		<td colspan="3">A</td>
+	</tr>
+	<tr>
+		<td rowspan="4">B</td>
+		<td colspan="2">C</td>
+	</tr>
+	<tr>
+		<td>D</td>
+		<td>E</td>
+	</tr>
+	<tr>
+		<td>F</td>
+		<td>G</td>
+	</tr>
+	<tr>
+		<td>H</td>
+		<td>I</td>
+	</tr>
+	<tr>
+		<td rowspan="4">J</td>
+		<td colspan="2">K</td>
+	</tr>
+	<tr>
+		<td>H</td>
+		<td>I</td>
+	</tr>
+	<tr>
+		<td>J</td>
+		<td>K</td>
+	</tr>
+	<tr>
+		<td>L</td>
+		<td>M</td>
+	</tr>
+	
+
+
+
+
+
+
+</table>
+</body>
+</html>

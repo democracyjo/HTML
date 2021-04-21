@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>  </title>
+</head>
+<body>
+<!-- 
+	form : 여러 블럭단위로 작성가능.
+	name : form의 이름(주로 javaScript에 form을 찾는 용도로 많이 사용.
+	action : form요소 안에 있는 모든 정보를 전송시킬, 즉 submit이 눌려지면 이동하게될 page설정
+	method : form요소 안에 있는 데이터를 전송하는 방식.(get | post | put | delete | patch .. )
+				get방식 : url주소에 전송되어지는 정보를 노출해서 전송하는 것.
+						-형식: http://domain:port/파일이름?name=value&name=value&...
+						-공백은 + 로 처리돼서 넘어감.
+						-주로 select전용 
+						-전송되어지는 데이터에 제한(크기) 
+						(http://localhost:8000/step01_HTML/ex06_ol-ul.html)
+				
+				post 방식 : 전송되어지는 데이터를 request영역에 body부분에 숨겨서 전송한다.
+							-url 주소에 노출 안됨.
+							-크기제한 없다 
+							-파일업로드 기능은 반드시 post방식
+							-주로 insert, update, delete 용도로 사용됨.
+							
+	**
+	novalidate="novalidate" : 기본적으로 HTML5가 지원하는 유효성체크를 비활성화 시킴.						
+
+ -->
+<h1> &lt;form> 양식</h1>	
+	<form name="f" action="http://www.naver.com" method="get" novalidate="novalidate">
+		<!-- 
+			<submit시 전송여부차이>
+			1. readonly="readonly"	:읽기전용 , 전송됨
+			https://www.naver.com/?id=minjoo&pass=sssss&hobbys=1&gender=%EB%82%A8%EC%9E%90 -> id 전송됨.
+			2. disabled="disabled"	:비활성화 , 전송안됨
+			https://www.naver.com/?pass=sssss&hobbys=1&gender=%EB%82%A8%EC%9E%90 -> id 전송안됨.
+			
+			아이디 value="minjoo" maxlength="5" 
+			
+			<label for="pwd">비밀번호</label><input id="pwd" > -> 해당 아이디를 터치하면 커서 자동으로 옮겨짐.
+		
+		 -->
+		<input type="text" name="id" size="20" placeholder="아이디를 입력하세요"><br>
+		<label for="pwd">비밀번호</label><input type="password" name="pass" id="pwd" size="10">
+		
+		<!-- 멀티선택-체크박스 
+			name속성의 값은 모두 같거나 다르거나 상관없다 
+			만약 같으면 하나의 이름으로 여러개의 값이 전송된다 
+			back단에서 받을 때 배열로 받는다.
+			name을 갖게 줘도 동작하는데 아무런 문제가 없다. 
+			
+			주로 checkbox의 name은 동일하게 사용한다. 
+			->왜냐?
+				이런 checkbox는 JavaScript에서 기능으로 처리할 때가 많은데 
+				이름이 다르면 처리하기가 어려워지기 때문이다.
+				
+				
+			checked="checked" -> checked 되서 나옴.	
+		-->
+		<fieldset>
+			<legend>취미</legend>
+			<input type="checkbox" name="hobbys" value="1" checked="checked" >악기연주
+			<input type="checkbox" name="hobbys" value="2" >독서
+			<input type="checkbox" name="hobbys" value="3" >코딩
+			<input type="checkbox" name="hobbys" value="4" checked="checked" >잠자기
+			<input type="checkbox" name="hobbys" value="5" >맛집탐방
+		</fieldset>
+		
+		
+		<!-- 
+			단일선택
+			radio : 단일선택
+					동일한 name을 가지고 있는 radio안에서 단일선택이 된다.(groupping)
+					
+					checked="checked" -> 마지막에 checked된 게 선택돼서 나옴.
+		 -->
+		<fieldset>
+			<legend>성별</legend>
+			<input type="radio" name="gender" value="남자">남자
+			<input type="radio" name="gender" value="여자">여자
+		</fieldset>
+		<p>
+		
+		<textarea rows="10" cols="20" name="content" placeholder="내용을 입력하세요.">내용입력</textarea>
+		<p>
+		<!-- 
+		
+			job이라는 name으로 value값이 넘어가는 것
+			size="3" : 한 화면에 보이는 갯수
+			multiple="multiple" : 중복선택 가능하게 
+			selected="selected" : 애초에 선택되어서 나오게 하는 속성
+		
+		 -->
+		<select name="job" size="5" multiple="multiple"> 
+			<option value="0">--선택--</option>
+			<option value="학생">학생</option>
+			<option value="강사" selected="selected">강사</option>
+			<option value="개발자">개발자</option>
+			<option value="디자이너" selected="selected">디자이너</option>
+			<option value="백수">백수</option>
+			<option value="백조">백조</option>
+		</select>
+		<p>
+		
+		<!-- 
+			눌려지는 button의 종류
+			type="button" : 이벤트 처리가 필요함.
+			type="reset"  : 값을 입력하고 reset을 누르면 초기화면으로 돌아감.
+			type="image"  : submit과 동일한 전송기능을 가짐. 버튼모양대신 이미지로 대체하고 싶을 때 사용함. 
+			type="file"	  : 반드시 method="post" enctype="multipart/form-data"속성이 필수. 
+							* enctype이 있어야 submit이 가능
+		 -->
+		 <input type="button" name="btn" value="눌러봐"><p> 
+		 <input type="reset" name="reset" value="취소"><p> 
+		 <input type="image" name="img" src="imges/hbin.jpg" width="30" height="40"><p> 
+		 <input type="file" name="file" value="파일전송"><p> 
+		 		
+		 <!-- 
+		 	화면에는 노출되지 않지만, 개발자가 필요에 의해 hidden이라는 속성값을 이용하여 값을 전송할 수 있다.
+		  -->
+		  <input type="hidden" name="key" value="insert">
+		  <input type="hidden" name="pageNum" value="10">
+		  <input type="hidden" name="keyWord" value="happy">
+		  
+		  <p>
+		  <!-- 
+		  	button 이라는 요소는 3가지 type을 지원한다.
+		  		1. submit	:전송
+		  		2. reset	:취소
+		  		3. button	:클릭
+		  		*생략하면 default : submit
+		  		
+		  		**bootstrap 사용하면 <button>으로 되어있는 UI가 많다.
+		  		그런데 button에다가 ajax기술을 적용하려할 때 문제 발생.
+		  		화면을 이동하면 안됨. 현재페이지에서 특정영역만 바뀌는 것. (꼭 type 속성을 넣어줄 것.)
+		   -->
+		  <button type="button">Who am I?</button>
+		  
+		  <p>
+		  <!-- 
+		  	<<HTML5에 추가된 FORM TYPE과 attribute>>
+		  	*브라우저 사양에 따라 지원 여부가 다름.
+		  	type="email"	: 값이 있으면 전송버튼 클릭시, email형식에 맞는지 체크함.
+		  	required="required"	: 해당값이 없으면 전송이 안됨. 입력 mandatory
+		  	
+		  	
+		   -->
+		   <input type="date" name="today" min="2021-03-02" max="2021-04-15"><p>
+		   <input type="number" name="ni" placeholder="숫자입력" min="10" max="20"><p>
+		   <input type="color" name="bgcolor"><p>
+		   <input type="text" name="name"><p>
+		   <input type="email" name="email" placeholder="이메일을 입력해 주세요" required="required"><p>
+		   <input type="range" name="range"><p>
+		  <hr>
+		<!-- 
+			현재 감싸져 있는 form 태그안에 있는 name에 해당하는 value 모두를 action에서 설정한
+			페이지에 전송하며 이동한다.
+			
+			method="post"
+			-get방식
+			https://www.naver.com/?id=minjoo&pass=123&hobbys=1&hobbys=2&hobbys=3&hobbys=5&gender=%EC%97%AC%EC%9E%90
+			한글인코딩처리가..관건이네 또?
+			
+			-post 방식
+			https://www.naver.com/
+			
+			
+			*scroll은 CSS가 담당.
+			*content부분 공백주지 말기.
+		 -->
+		<input type="submit" value="전송">
+		
+		
+		
+		
+	
+	
+	
+	</form>
+</body>
+</html>
